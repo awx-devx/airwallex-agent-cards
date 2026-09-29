@@ -2,6 +2,8 @@
 
 An agent asks for a card. The policy sets the limit and the merchant categories. A charge outside that policy declines.
 
+This sandbox demo does not verify which agent is calling. It shows card controls: the policy sets the limit and the merchant categories, and Airwallex declines a charge outside them. A request outside the policy waits for a person. See `docs/going-to-production.md` for how to add a key or a signed token per agent.
+
 The decline comes from Airwallex. This demo does not show a merchant accepting an agent, and it does not get a bot through a merchant's own checkout checks.
 
 Sandbox only. No real money. The app issues cards from a policy, tags each card to an agent, and simulates an authorization so you can see an allowed charge clear and a disallowed one decline. An approval queue holds requests that fall outside the policy. An MCP server wraps that layer so an agent can ask for a card without holding your keys.
