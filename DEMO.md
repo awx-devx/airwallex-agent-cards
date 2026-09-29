@@ -13,7 +13,7 @@ npm run reset-demo                 # seeds agents, cancels stale cards, ensures 
 npm run dev                        # starts on :3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000). Login password: `treasury`.
+Open [http://localhost:3000](http://localhost:3000). No login.
 
 ---
 
@@ -81,7 +81,7 @@ tasks:
 npm run agent -- --agent procurement-agent --live --task "Renew our Vercel Pro subscription, about $18"
 ```
 
-This time Claude (claude-opus-4-8) drives the loop: reads its own policy,
+This time Claude (claude-haiku-4-5) drives the loop: reads its own policy,
 reasons that Vercel=$18 is within MCC 5734 and the $100 cap, provisions a
 scoped card, pays, and records the spend — all with no human in the loop. Watch
 the terminal narrate each tool call.

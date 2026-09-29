@@ -27,7 +27,7 @@ so Airwallex blocks further authorizations after the first successful debit.
 An agent may use many cards — spend aggregates to the agent via the `metadata`
 field and the local task ledger.
 
-**Stack:** Next.js 15 (App Router) · TypeScript · Tailwind CSS · Claude API (`claude-opus-4-8`) · MCP.
+**Stack:** Next.js 15 (App Router) · TypeScript · Tailwind CSS · Claude API (`claude-haiku-4-5`) · MCP.
 
 ---
 
@@ -35,7 +35,7 @@ field and the local task ledger.
 
 | # | Feature | Where |
 |---|---------|-------|
-| 1 | **Developer login** — signed httpOnly cookie session (Web Crypto HMAC), route-guarding middleware | `/login`, `src/lib/auth.ts`, `src/middleware.ts` |
+| 1 | **No login** — the hosted demo is open. There is no password gate. | `/` |
 | 2 | **Global Accounts** — list each currency's real local bank details (account #/IBAN/routing/SWIFT), **open a new currency account** (`POST /api/v1/global_accounts/create`), and **simulate an inbound deposit** (`POST /api/v1/simulation/deposit/create`) | `/accounts` |
 | 3 | **Wallet balances** — multi-currency funds held, via `GET /api/v1/balances`; domestic currency derived from the entity (`GET /api/v1/account`) | Dashboard (`/`) |
 | 4 | **Top-up (HPP)** — create a PaymentIntent server-side, then Airwallex.js `redirectToCheckout` (`env: 'demo'`) → success/fail callback | Dashboard (`/`), `src/components/TopUpWidget.tsx` |
@@ -91,9 +91,7 @@ Fill in `.env.local`:
 | `AIRWALLEX_BASE_URL` | `https://api-demo.airwallex.com` (default) |
 | `NEXT_PUBLIC_AIRWALLEX_ENV` | `demo` (Airwallex.js environment) |
 | `AIRWALLEX_CARDHOLDER_ID` | *(optional)* cardholder to issue cards to; if empty the app reuses the first cardholder or auto-creates a demo one |
-| `ANTHROPIC_API_KEY` | Claude API key — powers the AI assistant |
-| `DEMO_PASSWORD` | Shared password for the developer login screen |
-| `SESSION_SECRET` | Random string used to sign the session cookie |
+| `ANTHROPIC_API_KEY` | Claude API key — powers the AI assistant (`claude-haiku-4-5`) |
 | `NEXT_PUBLIC_APP_URL` | Public base URL (used to build receipt URLs) |
 
 ### 3. Run
@@ -101,7 +99,7 @@ Fill in `.env.local`:
 ```bash
 node scripts/reset-demo.mjs   # seed policies, cancel stale cards, advance cardholder
 npm run dev
-# http://localhost:3000  →  log in with any username + DEMO_PASSWORD
+# http://localhost:3000
 ```
 
 Production build:
@@ -141,7 +139,7 @@ Type-check only: `npm run typecheck`.
 ### AI assistant
 
 `src/app/api/chat/route.ts` runs a manual Claude tool-use loop
-(`model: claude-opus-4-8`). The chat assistant uses **Anthropic tool-use directly** — it does not call the MCP server.
+(`model: claude-haiku-4-5`). The chat assistant uses Anthropic tool-use directly. It does not call the MCP server.
 
 Chat tools: `get_balances`, `list_accounts`, `open_account`, `simulate_deposit`,
 `convert_currency`, `list_cards`, `provision_card`, `provision_scoped_card`,
@@ -202,8 +200,7 @@ Then run `/mcp` and complete the OAuth flow. See
 
 ## Notes & disclaimers
 
-- **Demo only.** The login is a shared-password gate, not real auth. Sessions
-  are signed but there is no user store. The MCP endpoint is unauthenticated.
+- **Demo only.** The hosted app has no login. The MCP endpoint is unauthenticated.
 - All traffic goes to the Airwallex **demo** environment. Do not point
   `AIRWALLEX_BASE_URL` at production.
 - See `docs/PRD.md` for the full product spec, `DEMO.md` for the run-of-show,
