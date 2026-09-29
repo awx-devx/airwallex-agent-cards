@@ -2,6 +2,8 @@
 
 An agent asks for a card. The policy sets the limit and the merchant categories. A charge outside that policy declines.
 
+Chat is off on the hosted demo, so looking around does not spend a Claude key. Run the app locally with your own `ANTHROPIC_API_KEY` if you want the chat.
+
 This sandbox demo does not verify which agent is calling. It shows card controls: the policy sets the limit and the merchant categories, and Airwallex declines a charge outside them. A request outside the policy waits for a person. See `docs/going-to-production.md` for how to add a key or a signed token per agent.
 
 The decline comes from Airwallex. This demo does not show a merchant accepting an agent, and it does not get a bot through a merchant's own checkout checks.

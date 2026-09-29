@@ -315,6 +315,12 @@ function pushProvisionOutcome(actions: ChatAction[], result: Record<string, unkn
 }
 
 export async function POST(req: NextRequest) {
+  if (process.env.CHAT_ENABLED === "false") {
+    return NextResponse.json(
+      { error: "Chat is off on this demo. Use the buttons to issue a card and simulate a charge." },
+      { status: 403 },
+    );
+  }
   if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json(
       { error: "ANTHROPIC_API_KEY is not set. Add it to .env.local." },
