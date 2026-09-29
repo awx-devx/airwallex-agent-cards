@@ -13,7 +13,7 @@ export const AIRWALLEX_ENV =
 export const APP_URL =
   process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
-export const CLAUDE_MODEL = "claude-sonnet-4-6";
+export const CLAUDE_MODEL = "claude-haiku-4-5";
 
 // Currencies offered in dropdowns (cards, top-up) and as AI tool enums.
 export const KNOWN_CURRENCIES = ["USD", "HKD", "SGD", "EUR", "GBP", "AUD", "CAD"];
