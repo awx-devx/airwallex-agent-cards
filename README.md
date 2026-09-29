@@ -2,7 +2,7 @@
 
 An agent asks for a card. The policy sets the limit and the merchant categories. A charge outside that policy declines.
 
-Chat is off on the hosted demo, so looking around does not spend a Claude key. Run the app locally with your own `ANTHROPIC_API_KEY` if you want the chat.
+Chat is on. The hosted demo allows 8 chat messages an hour from one network, and 80 an hour across everyone, so one visitor cannot run up the Claude key.
 
 This sandbox demo does not verify which agent is calling. It shows card controls: the policy sets the limit and the merchant categories, and Airwallex declines a charge outside them. A request outside the policy waits for a person. See `docs/going-to-production.md` for how to add a key or a signed token per agent.
 

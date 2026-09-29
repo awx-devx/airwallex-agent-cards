@@ -314,13 +314,61 @@ function pushProvisionOutcome(actions: ChatAction[], result: Record<string, unkn
   }
 }
 
-export async function POST(req: NextRequest) {
-  if (process.env.CHAT_ENABLED === "false") {
-    return NextResponse.json(
-      { error: "Chat is off on this demo. Use the buttons to issue a card and simulate a charge." },
-      { status: 403 },
-    );
+const CHAT_LIMIT = 8;
+const CHAT_GLOBAL_LIMIT = 80;
+const CHAT_WINDOW_MS = 60 * 60 * 1000;
+
+function recentHits(raw: string | null, now: number): number[] {
+  if (!raw) return [];
+  try {
+    const hits = JSON.parse(raw);
+    if (!Array.isArray(hits)) return [];
+    return hits.filter((hit) => typeof hit === "number" && now - hit < CHAT_WINDOW_MS);
+  } catch {
+    return [];
   }
+}
+
+async function chatKv() {
+  try {
+    const { getCloudflareContext } = await import("@opennextjs/cloudflare");
+    const ctx = await getCloudflareContext({ async: true });
+    const env = ctx?.env as {
+      DEMO_STORE?: {
+        get(key: string): Promise<string | null>;
+        put(key: string, value: string): Promise<void>;
+      };
+    } | undefined;
+    return env?.DEMO_STORE ?? null;
+  } catch {
+    return null;
+  }
+}
+
+async function chatLimit(ip: string): Promise<string | null> {
+  const kv = await chatKv();
+  if (!kv) return null;
+  const now = Date.now();
+  const ipKey = `chat-ip:${ip}`;
+  const [ipRaw, globalRaw] = await Promise.all([kv.get(ipKey), kv.get("chat-global")]);
+  const ipHits = recentHits(ipRaw, now);
+  const globalHits = recentHits(globalRaw, now);
+  if (ipHits.length >= CHAT_LIMIT) {
+    return "This demo allows 8 chat messages an hour from one network. Try again later, or use the buttons.";
+  }
+  if (globalHits.length >= CHAT_GLOBAL_LIMIT) {
+    return "Chat is busy on this demo. Try again in an hour, or use the buttons.";
+  }
+  ipHits.push(now);
+  globalHits.push(now);
+  await Promise.all([
+    kv.put(ipKey, JSON.stringify(ipHits)),
+    kv.put("chat-global", JSON.stringify(globalHits)),
+  ]);
+  return null;
+}
+
+export async function POST(req: NextRequest) {
   if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json(
       { error: "ANTHROPIC_API_KEY is not set. Add it to .env.local." },
@@ -339,6 +387,14 @@ export async function POST(req: NextRequest) {
   }
   if (!userMessage.trim()) {
     return NextResponse.json({ error: "message required" }, { status: 400 });
+  }
+  const limited = await chatLimit(
+    req.headers.get("cf-connecting-ip") ||
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      "unknown",
+  );
+  if (limited) {
+    return NextResponse.json({ error: limited }, { status: 429 });
   }
 
   const anthropic = new Anthropic({ fetch: workersFetch });
