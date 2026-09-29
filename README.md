@@ -1,4 +1,4 @@
-# Airwallex Treasury Demo
+# Agent cards
 
 An agent asks for a card. The policy sets the limit and the merchant categories. A charge outside that policy declines.
 

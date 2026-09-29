@@ -3,7 +3,7 @@ import "./globals.css";
 import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
-  title: "Airwallex Treasury Demo",
+  title: "Agent cards",
   description: "Multi-currency treasury demo on the Airwallex demo environment",
 };
 
