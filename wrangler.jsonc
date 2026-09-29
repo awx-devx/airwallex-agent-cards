@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "airwallex-treasury-demo",
+  "name": "airwallex-agent-cards",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-08-12",
   "compatibility_flags": [
