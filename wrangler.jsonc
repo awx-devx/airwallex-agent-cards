@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "airwallex-treasury-demo",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-08-12",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "kv_namespaces": [
+    {
+      "binding": "DEMO_STORE",
+      "id": "44de6dcba9b04def8c3a3294f6359c70"
+    }
+  ],
+  "vars": {
+    "AIRWALLEX_BASE_URL": "https://api-demo.airwallex.com",
+    "NEXT_PUBLIC_AIRWALLEX_ENV": "demo",
+    "AIRWALLEX_CARDHOLDER_ID": ""
+  }
+}

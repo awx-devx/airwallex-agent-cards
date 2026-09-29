@@ -1,0 +1,17 @@
+/node_modules
+/.next
+/out
+/build
+.env
+.env.*
+!.env.local.example
+.env.local
+.env*.local
+.dev.vars
+/data
+*.tsbuildinfo
+next-env.d.ts
+.DS_Store
+.open-next
+.wrangler
+*.tar.gz

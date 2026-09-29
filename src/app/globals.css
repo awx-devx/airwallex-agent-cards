@@ -1,0 +1,82 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  /* Dot-grid overlay + radial gradient — grid is fixed so it feels like a space backdrop */
+  background-color: #0b0f1a;
+  background-image:
+    radial-gradient(circle, rgba(35, 42, 61, 0.7) 1px, transparent 1px),
+    radial-gradient(ellipse 90% 50% at 50% 0%, #151b36 0%, transparent 65%);
+  background-size: 28px 28px, 100% 100%;
+  background-attachment: fixed, fixed;
+  color: #e6e9f0;
+}
+
+.card-surface {
+  background: #131826;
+  border: 1px solid #232a3d;
+  border-radius: 16px;
+  /* Top-edge glow accent — makes panels feel like lit hardware */
+  box-shadow: inset 0 1px 0 rgba(97, 85, 228, 0.25);
+  transition: box-shadow 0.2s ease;
+}
+.card-surface:hover {
+  box-shadow: inset 0 1px 0 rgba(97, 85, 228, 0.45), 0 0 28px rgba(97, 85, 228, 0.07);
+}
+
+.btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors;
+}
+.btn-primary {
+  @apply btn bg-awx-accent text-white hover:bg-[#5a49f0] disabled:opacity-50 disabled:cursor-not-allowed;
+  box-shadow: 0 0 18px rgba(97, 85, 228, 0.4);
+  transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-primary:hover:not(:disabled) {
+  box-shadow: 0 0 28px rgba(97, 85, 228, 0.6);
+}
+.btn-primary:disabled {
+  box-shadow: none;
+}
+.btn-ghost {
+  @apply btn border border-awx-border text-gray-200 hover:bg-white/5;
+}
+.input {
+  @apply w-full rounded-lg border border-awx-border bg-[#0e1320] px-3 py-2 text-sm text-gray-100 outline-none;
+}
+.input:focus {
+  border-color: #6155E4;
+  box-shadow: 0 0 0 1px rgba(97, 85, 228, 0.4), 0 0 14px rgba(97, 85, 228, 0.15);
+}
+
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #232a3d; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #6155E4; }
+* { scrollbar-width: thin; scrollbar-color: #232a3d transparent; }
+
+/* ── Gradient text ── */
+.text-gradient {
+  background: linear-gradient(90deg, #6155E4 0%, #00c2a8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Pulsing live dot ── */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 4px rgba(16, 185, 129, 0); }
+}
+.live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: pulse-dot 2s ease-in-out infinite;
+  flex-shrink: 0;
+}

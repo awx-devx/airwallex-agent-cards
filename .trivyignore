@@ -1,0 +1,6 @@
+# Next.js internal dependencies — bundled inside next, not directly patchable.
+# postcss 8.4.31 is embedded in next's compiled output
+CVE-2026-45623
+GHSA-r28c-9q8g-f849
+# sharp 0.34.5 is next's optional image optimizer dep
+GHSA-f88m-g3jw-g9cj

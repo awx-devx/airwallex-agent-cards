@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.env.local
+.env*.local
+data
+.claude
+screenshots
+test-results
+ahoyguides
+issues
+issues2
+issues_mcp_agentos
+usedream
+notes
