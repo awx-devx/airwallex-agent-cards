@@ -1,5 +1,5 @@
 /**
- * Phase 0 capability probe — hits the Airwallex sandbox (api-demo) directly and
+ * Phase 0 capability probe — hits the Airwallex sandbox directly and
  * reports, per control, whether a violating simulated authorization is actually
  * declined and with what reason code. Read-only conclusions go into CAPABILITIES.md.
  *
@@ -19,7 +19,7 @@ const env = Object.fromEntries(
     }),
 );
 
-const BASE = env.AIRWALLEX_BASE_URL || "https://api-demo.airwallex.com";
+const BASE = env.AIRWALLEX_BASE_URL || "https://api.sandbox.airwallex.com";
 const API_VERSION = env.AIRWALLEX_API_VERSION || "2024-04-04";
 let TOKEN = null;
 

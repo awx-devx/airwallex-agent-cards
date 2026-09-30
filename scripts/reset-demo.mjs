@@ -23,7 +23,7 @@ const env = Object.fromEntries(
       return [l.slice(0, i).trim(), l.slice(i + 1).trim()];
     }),
 );
-const BASE = env.AIRWALLEX_BASE_URL || "https://api-demo.airwallex.com";
+const BASE = env.AIRWALLEX_BASE_URL || "https://api.sandbox.airwallex.com";
 
 // ── Seed data ────────────────────────────────────────────────────────────────
 const store = {

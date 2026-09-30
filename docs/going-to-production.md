@@ -24,7 +24,7 @@ Issuing (virtual cards) is not available on standard Airwallex accounts. You nee
 
 3. **Create a Cardholder.** Before provisioning any card, you need at least one verified Cardholder entity on your account. For agentic use cases, a single corporate Cardholder (your company) is typically sufficient — individual agent "cardholders" are modelled via card metadata and policy, not separate Cardholder records.
 
-4. **Switch credentials.** Swap `NEXT_PUBLIC_AIRWALLEX_ENV=demo` → `NEXT_PUBLIC_AIRWALLEX_ENV=prod` and replace sandbox credentials with production ones. The base URL changes from `https://api-demo.airwallex.com` to `https://api.airwallex.com` (set via `AIRWALLEX_BASE_URL`).
+4. **Switch credentials.** Swap `NEXT_PUBLIC_AIRWALLEX_ENV=demo` → `NEXT_PUBLIC_AIRWALLEX_ENV=prod` and replace sandbox credentials with production ones. The base URL changes from `https://api.sandbox.airwallex.com` to `https://api.airwallex.com` (set via `AIRWALLEX_BASE_URL`).
 
 > **Decision point:** If you are building this as a product for other businesses (not just your own internal use), each of your customers will need their own Airwallex account and their own Issuing access. Airwallex has a platform/partner programme for this — it is a separate onboarding conversation.
 

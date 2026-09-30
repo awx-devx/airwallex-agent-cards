@@ -1,4 +1,4 @@
-# Airwallex AI Agent Treasury Demo
+# Agent cards
 
 **Author:** Dan Kim  
 **Date:** 2026-07-23  
@@ -15,7 +15,7 @@
 
 ## TL;DR
 
-The Airwallex AI Agent Treasury Demo is a browser-based reference application that shows how to build a governed AI agent spend product on top of Airwallex Issuing. It runs as a live, interactive demo against the Airwallex sandbox — real API calls, real card controls, no stubbed Airwallex responses.
+Agent cards is a browser-based reference application that shows how to build a governed AI agent spend product on top of Airwallex Issuing. It runs as a live, interactive demo against the Airwallex sandbox — real API calls, real card controls, no stubbed Airwallex responses.
 
 The app has three parts working together:
 
@@ -42,7 +42,7 @@ The primary use case is a sales or developer relations demo — a 10-minute walk
 ## 2. Target Audience
 
 **Primary:** Airwallex enterprise prospects and partners evaluating AI agent use cases  
-**Secondary:** Developers building their own agent-powered treasury integrations  
+**Secondary:** Developers building their own agent-powered spend integrations  
 **Tertiary:** Airwallex internal teams (product, partnerships) demoing the platform
 
 The demo runner is assumed to be a technical person comfortable with a browser-based app. No deep knowledge of Airwallex APIs is required to run the demo, but understanding the architecture requires familiarity with REST APIs and AI agent tooling.
@@ -71,7 +71,7 @@ An extended demo shows the human-in-the-loop flow: an agent exceeds an escalatab
 
 ### 4.1 Authentication
 
-A session system gates the demo. Any username is accepted; the shared password is configurable (defaults to "treasury"). The session cookie is cryptographically signed. All pages and API routes are protected except the login page and the MCP endpoint — the MCP endpoint is intentionally open so external agents can connect without a browser session.
+The hosted demo has no login. Anyone who can open the app can use it. The MCP endpoint is also open, so an external agent can connect without a browser session. Agent identity is a string in the tool call, not a verified credential.
 
 ### 4.2 Policy and Agent Profile Management
 
@@ -141,7 +141,7 @@ The home page provides an at-a-glance view:
 A sliding drawer exposes a Claude chat interface. The system prompt puts the assistant in two modes: **human admin** (default — for balance inquiries, account management, FX, card questions) and **agent task** (when asked to run a procurement task autonomously).
 
 The chat assistant has access to tools covering:
-- **Treasury**: wallet balances, Global Account management, FX conversion, deposit simulation
+- **Accounts**: wallet balances, Global Account management, FX conversion, deposit simulation
 - **Card management**: listing cards, provisioning (general and scoped), credential reveal
 - **Agent operations**: listing agents and policies, agent spend reports
 - **Purchasing**: demo store checkout, card transaction simulation
@@ -277,7 +277,7 @@ For normal back-to-back demo runs neither reset is usually required — Airwalle
 
 - **Persistent storage:** The local store is a flat JSON file — not concurrency-safe beyond a single process. No database.
 
-- **Multi-tenancy:** Single shared account, single shared password. No per-user isolation or org management.
+- **Multi-tenancy:** Single shared sandbox account. No per-user isolation or org management.
 
 - **Webhook handling:** All Airwallex data is polled, not pushed. Webhook delivery requires a public HTTPS endpoint, which a localhost demo cannot provide.
 

@@ -168,7 +168,7 @@ interface Cardholder {
 }
 
 const DEMO_CARDHOLDER_EMAIL =
-  process.env.AIRWALLEX_CARDHOLDER_EMAIL || "treasury-demo@example.com";
+  process.env.AIRWALLEX_CARDHOLDER_EMAIL || "agent-cards-demo@example.com";
 
 async function resolveCardholderId(): Promise<string> {
   const fromEnv = process.env.AIRWALLEX_CARDHOLDER_ID;

@@ -4,7 +4,7 @@ import AppShell from "@/components/AppShell";
 
 export const metadata: Metadata = {
   title: "Agent cards",
-  description: "Multi-currency treasury demo on the Airwallex demo environment",
+  description: "Issue Airwallex sandbox cards to agents. A charge outside the policy is declined.",
 };
 
 export default function RootLayout({

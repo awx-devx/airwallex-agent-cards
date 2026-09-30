@@ -21,7 +21,7 @@ The architecture the doc describes and what this repo implements:
 | MCP server wrapping governance layer (`provision_scoped_card` tool) | `src/mcp/server.ts` (14 tools) |
 | Per-agent spend grouping via `card_id → agent_id` | `src/lib/airwallex.ts` `getAgentEconomy()` |
 
-Built on the **Airwallex sandbox** (`https://api-demo.airwallex.com`), with a natural-language interface powered by Claude.
+Built on the **Airwallex sandbox** (`https://api.sandbox.airwallex.com`), with a natural-language interface powered by Claude.
 
 ### Card ↔ agent model
 A card is a disposable spending instrument; the durable identity is the
@@ -90,9 +90,9 @@ Fill in `.env.local`:
 
 | Variable | What it is |
 |----------|-----------|
-| `AIRWALLEX_CLIENT_ID` | Demo API Client ID — Airwallex demo dashboard → Developer → API keys |
-| `AIRWALLEX_API_KEY` | Demo API key (same place) |
-| `AIRWALLEX_BASE_URL` | `https://api-demo.airwallex.com` (default) |
+| `AIRWALLEX_CLIENT_ID` | Sandbox Client ID — [sandbox.airwallex.com](https://sandbox.airwallex.com) → Account → Developer → API keys |
+| `AIRWALLEX_API_KEY` | Sandbox API key (same place) |
+| `AIRWALLEX_BASE_URL` | `https://api.sandbox.airwallex.com` (default) |
 | `NEXT_PUBLIC_AIRWALLEX_ENV` | `demo` (Airwallex.js environment) |
 | `AIRWALLEX_CARDHOLDER_ID` | *(optional)* cardholder to issue cards to; if empty the app reuses the first cardholder or auto-creates a demo one |
 | `ANTHROPIC_API_KEY` | Claude API key — powers the AI assistant (`claude-haiku-4-5`) |
@@ -177,7 +177,7 @@ simulation tools) — a separate server operated by Airwallex, distinct from the
 app-owned MCP server above. Add it to Claude Code:
 
 ```bash
-claude mcp add-json airwallex-dev '{ "type": "http", "url": "https://mcp-demo.airwallex.com/developer" }'
+claude mcp add-json airwallex-dev '{ "type": "http", "url": "https://mcp.sandbox.airwallex.com/developer" }'
 ```
 
 Then run `/mcp` and complete the OAuth flow. See

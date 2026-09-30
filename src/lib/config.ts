@@ -1,10 +1,10 @@
 /**
  * Central configuration. All Airwallex traffic targets the demo/sandbox
- * environment by default (https://api-demo.airwallex.com).
+ * environment by default (https://api.sandbox.airwallex.com).
  */
 
 export const AIRWALLEX_BASE_URL =
-  process.env.AIRWALLEX_BASE_URL || "https://api-demo.airwallex.com";
+  process.env.AIRWALLEX_BASE_URL || "https://api.sandbox.airwallex.com";
 
 // Airwallex.js environment for the browser SDK (HPP).
 export const AIRWALLEX_ENV =

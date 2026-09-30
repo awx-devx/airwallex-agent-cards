@@ -1,7 +1,7 @@
 /**
- * Full E2E test suite for the Airwallex Treasury Demo.
+ * Full E2E test suite for the Agent cards demo.
  *
- * Suite 1 — Golden path   : login → create policy on /policies → issue card on /agents → purchase → cleanup
+ * Suite 1 — Golden path   : create policy on /policies → issue card on /agents → purchase → cleanup
  * Suite 2 — Enforcement   : edit policy, per-txn cap, MCC restriction, single-use
  * Suite 3 — Dashboard     : home page stat tiles load
  * Suite 4 — Approvals     : /approvals page loads with approval queue section
@@ -31,22 +31,15 @@ function check(label, value) {
   else        { console.error(`  ✗ ${label}`); failed++; }
 }
 
-// ── Browser / login ────────────────────────────────────────────────────────────
+// ── Browser ────────────────────────────────────────────────────────────────────
 const browser = await chromium.launch({ headless: true });
 const ctx = await browser.newContext();
 await ctx.addInitScript(() => sessionStorage.setItem('awx_welcome_seen', '1'));
 const page = await ctx.newPage();
 
-await page.goto(`${BASE}/login`);
-await page.waitForLoadState('networkidle');
-await page.locator('[autocomplete="username"]').fill('developer');
-await page.locator('[autocomplete="current-password"]').fill('treasury');
-await page.click('button:has-text("Sign in")');
-await page.waitForTimeout(2000);
 await page.goto(`${BASE}/policies`);
 await page.waitForLoadState('networkidle');
-if (page.url().includes('/login')) { console.error('Auth failed'); process.exit(1); }
-console.log('✓ Logged in\n');
+console.log('✓ Opened /policies\n');
 
 // ── API helpers ────────────────────────────────────────────────────────────────
 async function apiRequest(method, path, body) {

@@ -10,7 +10,7 @@
  * freeze/cancel) are enforced FOR REAL by the Airwallex rail on that simulated
  * authorization, with genuine reason codes.
  *
- * This module is deliberately NOT part of the treasury control plane (the MCP
+ * This module is deliberately NOT part of the agent-cards control plane (the MCP
  * server). It is a separate actor. Both the human console (card "Buy" button,
  * chat) and the headless agent runner call it, so there is exactly one merchant
  * implementation — not two divergent ones.

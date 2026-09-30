@@ -1,6 +1,6 @@
 # DEMO.md — Run-of-show
 
-A beat-by-beat guide for walking someone through the treasury demo. Total
+A beat-by-beat guide for walking someone through the agent-cards demo. Total
 runtime: ~8 minutes. Everything runs on `localhost:3000` against Airwallex
 sandbox — no real money moves.
 
@@ -26,7 +26,7 @@ A human does everything through the console UI.
 - Click **Get started**. You land on the assistant home: chat + wallet
   balances + top-up.
 
-### Beat 2: Fund the treasury
+### Beat 2: Fund the wallet
 - In the chat, type: **"Deposit $500 into our USD account"**
 - The assistant finds a USD Global Account and calls `simulate_deposit`.
 - Watch the USD balance update in Wallet Balances (auto-polls).

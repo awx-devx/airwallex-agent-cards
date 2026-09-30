@@ -4,7 +4,7 @@
  * Run with:  node --env-file=.env.local scripts/diagnose-activity.mjs
  */
 
-const BASE = process.env.AIRWALLEX_API_URL || "https://api-demo.airwallex.com";
+const BASE = process.env.AIRWALLEX_API_URL || "https://api.sandbox.airwallex.com";
 const CLIENT_ID = process.env.AIRWALLEX_CLIENT_ID;
 const API_KEY = process.env.AIRWALLEX_API_KEY;
 

@@ -1,13 +1,13 @@
-# Developer Notes: Airwallex Treasury Demo
+# Developer Notes: Agent cards
 
 > **TL;DR:** The Airwallex Issuing API's core card controls are solid and genuinely rail-enforced — MCC lock, spend caps, expiry, single-use, freeze, and cancel all produce correct, actionable decline codes on simulated authorizations. Friction is almost entirely at the developer experience layer. The two highest-priority open items are (1) no documented path from a localhost MCP endpoint to per-agent production auth, and (2) no documented PCI-safe path for autonomous agents to use provisioned cards — the correct pattern (agent holds `card_id`, server executes the charge) must be derived; Airwallex's agentic guides don't describe it. Most other findings are documentation improvements, not API redesigns. One issue was resolved during this build: ADV-9320 (Developer MCP simulation returning HTTP 400 due to sandbox header-size limit) — confirmed fixed 2026-07-21.
 
-*Compiled from a full build of the Airwallex treasury demo app — a real working
+*Compiled from a full build of the Agent cards demo — a real working
 implementation of programmatic agent spend built from scratch against the
 Airwallex sandbox. Every finding below was discovered empirically, not from
 reading docs.*
 
-*API environment: `https://api-demo.airwallex.com` (sandbox)*
+*API environment: `https://api.sandbox.airwallex.com` (sandbox)*
 
 ---
 

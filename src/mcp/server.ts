@@ -33,7 +33,7 @@ function text(obj: unknown) {
 }
 
 export function buildMcpServer(): McpServer {
-  const server = new McpServer({ name: "treasury-control-plane", version: "1.0.0" });
+  const server = new McpServer({ name: "agent-cards", version: "1.0.0" });
 
   server.registerTool(
     "list_agents",

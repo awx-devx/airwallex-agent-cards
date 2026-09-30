@@ -21,7 +21,7 @@
     }
   ],
   "vars": {
-    "AIRWALLEX_BASE_URL": "https://api-demo.airwallex.com",
+    "AIRWALLEX_BASE_URL": "https://api.sandbox.airwallex.com",
     "NEXT_PUBLIC_AIRWALLEX_ENV": "demo",
     "AIRWALLEX_CARDHOLDER_ID": ""
   }

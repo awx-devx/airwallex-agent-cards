@@ -241,7 +241,7 @@ const tools: Anthropic.Tool[] = [
   },
 ];
 
-const SYSTEM = `You are the treasury assistant for an Airwallex demo app. You help manage a multi-currency treasury (Global Accounts, wallet balances, virtual cards, top-ups) AND act as a governed AI agent when asked to run tasks autonomously.
+const SYSTEM = `You are the assistant for an Airwallex agent-cards demo. You help manage Global Accounts, wallet balances, virtual cards, and top-ups, AND act as a governed AI agent when asked to run tasks autonomously.
 
 ## Two modes
 
